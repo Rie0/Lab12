@@ -34,12 +34,11 @@ public class ConfigSecurity {
                 .and() //Authorization
                 .authenticationProvider(daoAuthenticationProvider())
                 .authorizeHttpRequests()
-                .requestMatchers("/api/v1/auth/register").permitAll()
+                .requestMatchers("/api/v1/auth/register","/api/v1/blog/get-all","/api/v1/blog/get-by-author-id/{authorId}","/api/v1/blog/get-by-id/{blogId}","api/v1/blog/get-by-title/{string}").permitAll()
 
                 //add login
-                .requestMatchers("/api/v1/user/get-all","/api/v1/user/delete-by-admin/{userId}").hasAuthority("ADMIN")
-                .requestMatchers("api/v1/user/update-my-info","/api/v1/user/delete-by-the-user").hasAuthority("USER")
-
+                .requestMatchers("/api/v1/user/get-all","/api/v1/user/delete-by-admin/{userId}","/").hasAuthority("ADMIN")
+                .requestMatchers("api/v1/user/update-my-info","/api/v1/user/delete-by-the-user","/api/v1/blog/get-my-blogs","api/v1/blog/add","api/v1/blog/update/{blogId}","api/v1/blog/delete/{blogId}").hasAuthority("USER")
 
                 .and() //logout
                 .logout().logoutUrl("/api/v1/auth/logout").logoutSuccessUrl("/")

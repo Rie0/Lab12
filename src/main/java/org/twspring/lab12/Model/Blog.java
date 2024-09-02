@@ -3,7 +3,6 @@ package org.twspring.lab12.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,11 +28,6 @@ public class Blog {
     @NotEmpty(message = "Body cannot be empty")
     @Size(min = 20,max = 30000,message = "Body must have between 20 to 3000 characters")
     private String body;
-
-    //Extra for a little practice
-    @Column(columnDefinition = "BOOLEAN NOT NULL")
-    @NotNull(message = "Is Marked As Mature Content cannot be null")
-    private boolean isMarkedAsMatureContent; //content not appropriate to users under the age of 15
 
     //Relationships
     @ManyToOne

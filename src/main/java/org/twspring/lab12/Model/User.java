@@ -38,7 +38,6 @@ public class User implements UserDetails {
 
     @Column(columnDefinition = "VARCHAR(300) NOT NULL")
     @NotEmpty(message = "Password cannot be empty")
-    //Test! changed somethings not sure it's still working
     @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[\\W_]).{8,}$",
             message = "Password must be strong (at least: at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character)")
     private String password;
@@ -47,35 +46,9 @@ public class User implements UserDetails {
     @Pattern(regexp = "^(USER|ADMIN)$")
     private String role;
 
-//    //extra, for a little practice
-//    @NotNull(message = "Birthdate cannot be null")
-//    @JsonFormat(pattern = "yyyy-MM-dd")
-//    @Column(columnDefinition = "DATE NOT NULL DEFAULT TIMESTAMP(CURRENT_DATE)")
-//    private LocalDate birthDate;
-//
-//    @Column(columnDefinition = "INT NOT NULL")
-//    @NotNull(message = "age cannot be null")
-//    @Positive(message = "age cannot be a negative number")
-//    @Min(value = 13, message = "Users under the age of 13 cannot access the site")
-//    private Integer Age;
-//
-//    //maybe ignore?
-//    @Column(columnDefinition = "INT NOT NULL DEFAULT 0")
-//    @NotNull(message = "number of blogs cannot be null")
-//    @PositiveOrZero(message = "Number of blogs cannot be a negative number")
-//    private Integer numberOfBlogs=0;
-//
-
     //Relationships
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
     private List<Blog> blogs;
-
-    //My methods
-
-//    //handles inside the service
-//    public Integer calculateAge(LocalDate birthDate){
-//       return Period.between(this.birthDate, LocalDate.now()).getYears();
-//    }
 
     //UserDetails methods
     @Override
